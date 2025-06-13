@@ -1,35 +1,29 @@
 import React, { useState } from 'react';
 import './App.css';
 
-// ✅ Импорт твоих готовых компонентов
 import RegionSelector from './RegionSelector';
 import StopSelector from './StopSelector';
-import BusButtons from './BusButtons'; // он уже знает, что делать
-import BusSchedule from './BusSchedule'; // этот импорт нужен, если ты хочешь отдельный компонент для расписания
+import BusButtons from './BusButtons';
+import BusSchedule from './BusSchedule';
+import StopSchedule from './StopSchedule'; // 👈 добавили
 
 function App() {
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedStop, setSelectedStop] = useState('');
   const [selectedBus, setSelectedBus] = useState('');
 
-  // обработчик смены региона
   const handleRegionChange = (region) => {
-    console.log('Выбран регион:', region);
     setSelectedRegion(region);
-    setSelectedStop(''); // сброс остановки
-    setSelectedBus('');  // сброс автобуса
+    setSelectedStop('');
+    setSelectedBus('');
   };
 
-  // обработчик смены остановки
   const handleStopChange = (stop) => {
-    console.log('Выбрана остановка:', stop);
     setSelectedStop(stop);
-    setSelectedBus(''); // сброс автобуса
+    setSelectedBus('');
   };
 
-  // обработчик выбора автобуса при нажатии на кнопку
   const handleBusClick = (busNumber) => {
-    console.log('Выбран автобус:', busNumber);
     setSelectedBus(busNumber);
   };
 
@@ -37,10 +31,8 @@ function App() {
     <div className="App">
       <h1>Выбор автобусной зоны</h1>
 
-      {/* Компонент выбора региона */}
       <RegionSelector onRegionChange={handleRegionChange} />
 
-      {/* Если выбран регион — показываем выбор остановки */}
       {selectedRegion && (
         <>
           <p>Вы выбрали регион: {selectedRegion}</p>
@@ -48,15 +40,18 @@ function App() {
         </>
       )}
 
-      {/* Если выбрана остановка — показываем кнопки автобусов */}
       {selectedStop && (
         <>
           <p>Вы выбрали остановку: {selectedStop}</p>
+
+          {/* Кнопки автобусов */}
           <BusButtons region={selectedRegion} stop={selectedStop} onBusClick={handleBusClick} />
+
+          {/* Расписание всей остановки */}
+          <StopSchedule region={selectedRegion} stop={selectedStop} />
         </>
       )}
 
-      {/* Если выбран автобус — показываем расписание */}
       {selectedBus && (
         <>
           <p>Вы выбрали автобус: {selectedBus}</p>
