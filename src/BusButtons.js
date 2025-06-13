@@ -1,5 +1,6 @@
 // src/BusButtons.js
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';  // ✅ ADD THIS
 import BusSchedule from './BusSchedule';
 
 function encodeForUrl(str) {
@@ -7,6 +8,8 @@ function encodeForUrl(str) {
 }
 
 function BusButtons({ region, stop }) {
+  const { t } = useTranslation(); // ✅ ADD THIS
+
   const [buses, setBuses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedBus, setSelectedBus] = useState('');
@@ -29,23 +32,23 @@ function BusButtons({ region, stop }) {
         setLoading(false);
       })
       .catch((error) => {
-        console.error('Ошибка загрузки автобусов:', error);
+        console.error(t('error_loading_buses'), error);  // ✅ USE TRANSLATION KEY
         setBuses([]);
         setLoading(false);
       });
-  }, [region, stop]);
+  }, [region, stop, t]); // ✅ include t in deps
 
   const handleBusClick = (busNumber) => {
     console.log('Clicked bus:', busNumber);
     setSelectedBus(busNumber);
   };
 
-  if (loading) return <p>Загрузка автобусов...</p>;
-  if (!buses.length) return <p>Нет автобусов для выбранной остановки.</p>;
+  if (loading) return <p>{t('loading_buses')}</p>; // ✅ USE TRANSLATION
+  if (!buses.length) return <p>{t('no_buses')}</p>; // ✅ USE TRANSLATION
 
   return (
     <div>
-      <h2>Автобусы для {stop}:</h2>
+      <h2>{t('buses_for', { stop })}:</h2> {/* ✅ USE TRANSLATION */}
       {buses.map((bus, index) => (
         <button key={index} onClick={() => handleBusClick(bus.title)}>
           {bus.title}

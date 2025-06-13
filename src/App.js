@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import './App.css';
+import './i18n';
 
 import RegionSelector from './RegionSelector';
 import StopSelector from './StopSelector';
 import BusButtons from './BusButtons';
 import BusSchedule from './BusSchedule';
 import StopSchedule from './StopSchedule';
+import LanguageSwitcher from './LanguageSwitcher';
 
 function App() {
+  const { t } = useTranslation();
+
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedStop, setSelectedStop] = useState('');
   const [selectedBus, setSelectedBus] = useState('');
   const [loadingLocation, setLoadingLocation] = useState(true);
 
-
-  // ✅ При загрузке используем реальную геолокацию браузера
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       async (position) => {
@@ -23,7 +26,7 @@ function App() {
           const latitude = position.coords.latitude;
 
           const response = await fetch(`https://peatus.metaler.com.ua/geolocation/${longitude}/${latitude}`);
-          if (!response.ok) throw new Error('Ошибка сети при геолокации');
+          if (!response.ok) throw new Error(t('network_error_geolocation'));
 
           const data = await response.json();
           if (data.length > 0) {
@@ -32,17 +35,17 @@ function App() {
             setSelectedStop(nearestStop.title);
           }
         } catch (error) {
-          console.error('Ошибка при получении геолокации:', error);
+          console.error(t('error_getting_geolocation'), error);
         } finally {
           setLoadingLocation(false);
         }
       },
       (error) => {
-        console.error('Не удалось получить геолокацию:', error);
+        console.error(t('error_getting_geolocation'), error);
         setLoadingLocation(false);
       }
     );
-  }, []);
+  }, [t]);
 
   const handleRegionChange = (region) => {
     setSelectedRegion(region);
@@ -66,14 +69,15 @@ function App() {
   };
 
   if (loadingLocation) {
-    return <div>Определяем ваше местоположение...</div>;
+    return <div>{t('determining_location')}</div>;
   }
 
   return (
     <div className="App">
-      <h1>Выбор автобусной зоны</h1>
+      <LanguageSwitcher />
 
-      {/* ✅ Теперь RegionSelector получает выбранный регион */}
+      <h1>{t('zone_selection')}</h1>
+
       <RegionSelector 
         onRegionChange={handleRegionChange} 
         selectedRegion={selectedRegion} 
@@ -81,7 +85,7 @@ function App() {
 
       {selectedRegion && (
         <>
-          <p>Вы выбрали регион: {selectedRegion}</p>
+          <p>{t('your_region')} {selectedRegion}</p>
           <StopSelector 
             region={selectedRegion} 
             onStopChange={handleStopChange} 
@@ -92,7 +96,7 @@ function App() {
 
       {selectedStop && (
         <>
-          <p>Вы выбрали остановку: {selectedStop}</p>
+          <p>{t('your_stop')} {selectedStop}</p>
           <BusButtons region={selectedRegion} stop={selectedStop} onBusClick={handleBusClick} />
           <StopSchedule region={selectedRegion} stop={selectedStop} />
         </>
@@ -100,11 +104,11 @@ function App() {
 
       {selectedBus && (
         <>
-          <p>Вы выбрали автобус: {selectedBus}</p>
+          <p>{t('your_bus')} {selectedBus}</p>
           <BusSchedule region={selectedRegion} stop={selectedStop} busNumber={selectedBus} />
         </>
       )}
-      <button onClick={handleReset}>Сбросить выбор</button>
+      <button onClick={handleReset}>{t('reset_selection')}</button>
     </div>
   );
 }

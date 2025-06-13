@@ -1,11 +1,13 @@
 // src/StopSchedule.js
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function encodeForUrl(str) {
   return encodeURIComponent(str);
 }
 
 function StopSchedule({ region, stop }) {
+  const { t } = useTranslation();
   const [schedule, setSchedule] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -26,18 +28,18 @@ function StopSchedule({ region, stop }) {
         setLoading(false);
       })
       .catch((error) => {
-        console.error('Ошибка загрузки расписания остановки:', error);
+        console.error(t('error_loading_timetable'), error);
         setSchedule([]);
         setLoading(false);
       });
-  }, [region, stop]);
+  }, [region, stop, t]);
 
-  if (loading) return <p>Загрузка...</p>;
-  if (!schedule.length) return <p>Нет расписания для остановки {stop}.</p>;
+  if (loading) return <p>{t('loading_timetable')}</p>;
+  if (!schedule.length) return <p>{t('no_timetable')} {stop}.</p>;
 
   return (
     <div>
-      <h3>Расписание для {stop}:</h3>
+      <h3>{t('timetable_for')} {stop}:</h3>
       <ul>
         {schedule.map((item, index) => (
           <li key={index}>

@@ -1,7 +1,9 @@
 // src/RegionSelector.js
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function RegionSelector({ selectedRegion, onRegionChange }) {
+  const { t } = useTranslation();
   const [regions, setRegions] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -21,17 +23,17 @@ function RegionSelector({ selectedRegion, onRegionChange }) {
       });
   }, []);
 
-  if (loading) return <p>Загрузка регионов...</p>;
+  if (loading) return <p>{t('loading_regions')}</p>;
 
   return (
     <div>
-      <label htmlFor="region-select">Выберите регион:</label>
+      <label htmlFor="region-select">{t('select_region')}:</label>
       <select
         id="region-select"
         value={selectedRegion}
         onChange={e => onRegionChange(e.target.value)}
       >
-        <option value="">-- выберите регион --</option>
+        <option value="">{t('placeholder_select_region')}</option>
         {regions.map((r, i) => (
           <option key={i} value={r}>{r}</option>
         ))}
