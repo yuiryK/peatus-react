@@ -1,5 +1,6 @@
 // src/BusButtons.js
 import React, { useState, useEffect } from 'react';
+import BusSchedule from './BusSchedule';
 
 function encodeForUrl(str) {
   return encodeURIComponent(str);
@@ -8,10 +9,12 @@ function encodeForUrl(str) {
 function BusButtons({ region, stop }) {
   const [buses, setBuses] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [selectedBus, setSelectedBus] = useState('');
 
   useEffect(() => {
     if (!region || !stop) {
       setBuses([]);
+      setSelectedBus('');
       return;
     }
 
@@ -32,6 +35,11 @@ function BusButtons({ region, stop }) {
       });
   }, [region, stop]);
 
+  const handleBusClick = (busNumber) => {
+    console.log('Clicked bus:', busNumber);
+    setSelectedBus(busNumber);
+  };
+
   if (loading) return <p>Загрузка автобусов...</p>;
   if (!buses.length) return <p>Нет автобусов для выбранной остановки.</p>;
 
@@ -39,8 +47,14 @@ function BusButtons({ region, stop }) {
     <div>
       <h2>Автобусы для {stop}:</h2>
       {buses.map((bus, index) => (
-        <button key={index}>{bus.title}</button>
+        <button key={index} onClick={() => handleBusClick(bus.title)}>
+          {bus.title}
+        </button>
       ))}
+
+      {selectedBus && (
+        <BusSchedule region={region} stop={stop} busNumber={selectedBus} />
+      )}
     </div>
   );
 }
