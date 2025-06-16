@@ -27,7 +27,7 @@ function RegionSelector({ selectedRegion, onRegionChange }) {
 
   return (
     <div>
-      <label htmlFor="region-select">{t('select_region')}:</label>
+      <label htmlFor="region-select">{t('select_region')}: </label>
       <select
         id="region-select"
         value={selectedRegion}

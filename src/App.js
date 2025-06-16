@@ -80,11 +80,13 @@ function AppContent() {
       <LanguageSwitcher />
 
       <button onClick={toggleTheme}>
-        {theme === 'light' ? '🌙 Dark Theme' : '☀️ Light Theme'}
+        {theme === 'light' ? `🌙 ${t('theme_dark')}` : `☀️ ${t('theme_light')}`}
+
       </button>
 
       <h1>{t('zone_selection')}</h1>
 
+      <div className="selection-form">
       <RegionSelector 
         onRegionChange={handleRegionChange} 
         selectedRegion={selectedRegion} 
@@ -100,7 +102,9 @@ function AppContent() {
           />
         </>
       )}
+      </div>
 
+      <div className="schedule-list">
       {selectedStop && (
         <>
           <p>{t('your_stop')} {selectedStop}</p>
@@ -109,12 +113,16 @@ function AppContent() {
         </>
       )}
 
+      </div>
+
+      <div className="schedule-list">
       {selectedBus && (
         <>
           <p>{t('your_bus')} {selectedBus}</p>
           <BusSchedule region={selectedRegion} stop={selectedStop} busNumber={selectedBus} />
         </>
       )}
+      </div>
       <button onClick={handleReset}>{t('reset_selection')}</button>
     </div>
   );

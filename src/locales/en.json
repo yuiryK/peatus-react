@@ -1,10 +1,10 @@
 {
   "zone_selection": "Bus zone selection",
-  "select_region": "Select region:",
+  "select_region": "Select region",
   "your_region": "Your region:",
   "placeholder_select_region": "-- select region --",
   "loading_regions": "Loading regions...",
-  "select_stop": "Select stop:",
+  "select_stop": "Select stop",
   "your_stop": "Your stop:",
   "placeholder_select_stop": "-- select stop --",
   "loading_stops": "Loading stops...",
@@ -20,5 +20,7 @@
   "network_error_geolocation": "Network error with geolocation:",
   "error_getting_geolocation": "Error getting geolocation:",
   "determining_location": "Determining your location...",
-  "reset_selection": "Reset selection"
+  "reset_selection": "Reset selection",
+  "theme_light": "Light Theme",
+  "theme_dark": "Dark Theme"
 }

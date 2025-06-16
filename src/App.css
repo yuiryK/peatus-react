@@ -60,3 +60,69 @@ button:hover {
   color: #282c34;
 }
 
+/* === Контейнер для всей формы выбора === */
+.selection-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem; /* расстояние между лейблами и селектами */
+  margin: 2rem auto;
+  max-width: 400px;
+}
+
+/* === Лейблы и их селекты === */
+.selection-form label {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.selection-form select {
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+  transition: border 0.2s;
+}
+
+.selection-form select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* === Красивый список расписания === */
+.schedule-list {
+  text-align: left;
+  margin: 2rem auto;
+  max-width: 400px;
+  width: 90%;
+}
+
+.schedule-list p {
+  background: #f9f9f9;
+  padding: 0.5rem 0.8rem;
+  margin: 0.4rem 0;
+  border-radius: 6px;
+  border-left: 4px solid #007bff;
+  transition: background 0.3s;
+}
+
+.schedule-list p:hover {
+  background: #eaeaea;
+}
+
+.dark .schedule-list p {
+  background: #1f1f1f;
+  border-left-color: #66aaff;
+}
+
+.dark .schedule-list p:hover {
+  background: #2a2a2a;
+}
+.selection-form label {
+  display: block; /* важно, чтобы отступ применился корректно */
+  margin-bottom: 0.5rem; /* увеличь это значение, если нужно больше */
+  font-size: 1rem;
+}
+

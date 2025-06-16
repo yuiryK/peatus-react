@@ -1,10 +1,10 @@
 {
     "zone_selection": "Bussitsooni valik",
-    "select_region": "Vali piirkond:",
+    "select_region": "Vali piirkond",
     "your_region": "Sinu piirkond:",
     "placeholder_select_region": "-- vali piirkond --",
     "loading_regions": "Piirkondade laadimine...",
-    "select_stop": "Vali peatus:",
+    "select_stop": "Vali peatus",
     "your_stop": "Sinu peatus:",
     "placeholder_select_stop": "-- vali peatus --",
     "loading_stops": "Peatuste laadimine...",
@@ -20,5 +20,7 @@
     "network_error_geolocation": "Võrgu viga asukoha määramisel:",
     "error_getting_geolocation": "Viga asukoha saamisel:",
     "determining_location": "Asukoha määramine...",
-    "reset_selection": "Lähtesta valik"
+    "reset_selection": "Lähtesta valik",
+    "theme_light": "Hele teema",
+    "theme_dark": "Tume teema"
 }

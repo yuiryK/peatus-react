@@ -1,10 +1,10 @@
 {
     "zone_selection": "Выбор автобусной зоны",
-    "select_region": "Выберите регион:",
+    "select_region": "Выберите регион",
     "your_region": "Ваш регион:",
     "placeholder_select_region": "-- выберите регион --",
     "loading_regions": "Загрузка регионов...",
-    "select_stop": "Выберите остановку:",
+    "select_stop": "Выберите остановку",
     "your_stop": "Ваша остановка:",
     "placeholder_select_stop": "-- выберите остановку --",
     "loading_stops": "Загрузка остановок...",
@@ -20,5 +20,7 @@
     "network_error_geolocation": "Сетевая ошибка при определении геолокации:",
     "error_getting_geolocation": "Ошибка при получении геолокации:",
     "determining_location": "Определение вашего местоположения...",
-    "reset_selection": "Сбросить выбор"
+    "reset_selection": "Сбросить выбор",
+    "theme_light": "Светлая тема",
+    "theme_dark": "Темная тема"
 }

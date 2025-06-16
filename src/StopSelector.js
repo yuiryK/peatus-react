@@ -35,7 +35,7 @@ function StopSelector({ region, selectedStop, onStopChange }) {
 
   return (
     <div>
-      <label htmlFor="stop-select">{t('select_stop')}:</label>
+      <label htmlFor="stop-select">{t('select_stop')}: </label>
       <select
         id="stop-select"
         value={selectedStop}
