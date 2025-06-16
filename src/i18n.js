@@ -6,7 +6,7 @@ import en from './locales/en.json';
 import ru from './locales/ru.json';
 import et from './locales/et.json';
 
-// ✅ Try to get saved language, fallback to 'et'
+// Try to get saved language, fallback to 'et'
 const savedLang = localStorage.getItem('lang') || 'et';
 
 i18n

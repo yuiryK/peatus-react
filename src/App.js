@@ -128,7 +128,6 @@ function AppContent() {
   );
 }
 
-// ✅ Оборачиваем в ThemeProvider
 export default function App() {
   return (
     <ThemeProvider>
