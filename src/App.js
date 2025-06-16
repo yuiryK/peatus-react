@@ -10,11 +10,11 @@ import BusSchedule from './BusSchedule';
 import StopSchedule from './StopSchedule';
 import LanguageSwitcher from './LanguageSwitcher';
 
-import { ThemeContext, ThemeProvider } from './ThemeContext'; // ✅ импорт контекста
+import { ThemeContext, ThemeProvider } from './ThemeContext'; 
 
 function AppContent() {
   const { t } = useTranslation();
-  const { theme, toggleTheme } = useContext(ThemeContext); // ✅ контекст
+  const { theme, toggleTheme } = useContext(ThemeContext); 
 
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedStop, setSelectedStop] = useState('');
@@ -94,8 +94,7 @@ function AppContent() {
 
       {selectedRegion && (
         <>
-          <p>{t('your_region')} {selectedRegion}</p>
-          <StopSelector 
+           <StopSelector 
             region={selectedRegion} 
             onStopChange={handleStopChange} 
             selectedStop={selectedStop} 
