@@ -45,11 +45,9 @@ function BusSchedule({ region, stop, busNumber }) {
   return (
     <div>
       <h3>{t('timetable_for', { busNumber })}:</h3>
-      <ul>
         {schedule.map((time, index) => (
-          <li key={index}>{time.title}</li>
+          <p key={index}>{time.title}</p>
         ))}
-      </ul>
     </div>
   );
 }

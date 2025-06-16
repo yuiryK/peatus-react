@@ -40,13 +40,11 @@ function StopSchedule({ region, stop }) {
   return (
     <div>
       <h3>{t('timetable_for')} {stop}:</h3>
-      <ul>
         {schedule.map((item, index) => (
-          <li key={index}>
+          <p key={index}>
             {item.title} {item.route_long_name} {item.adjusted_date} {item.adjusted_time}
-          </li>
+          </p>
         ))}
-      </ul>
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 function LanguageSwitcher() {
@@ -6,14 +5,14 @@ function LanguageSwitcher() {
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
-    localStorage.setItem('language', lng);
+    localStorage.setItem('lang', lng); // ✅ Save to localStorage
   };
 
   return (
     <div>
-      <button onClick={() => changeLanguage('en')}>English</button>
-      <button onClick={() => changeLanguage('et')}>Eesti</button>
-      <button onClick={() => changeLanguage('ru')}>Русский</button>
+      <button onClick={() => changeLanguage('et')}>ET</button>
+      <button onClick={() => changeLanguage('en')}>EN</button>
+      <button onClick={() => changeLanguage('ru')}>RU</button>
     </div>
   );
 }
