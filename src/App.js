@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import './App.css';
 import './i18n';
@@ -10,8 +10,11 @@ import BusSchedule from './BusSchedule';
 import StopSchedule from './StopSchedule';
 import LanguageSwitcher from './LanguageSwitcher';
 
-function App() {
+import { ThemeContext, ThemeProvider } from './ThemeContext'; // ✅ импорт контекста
+
+function AppContent() {
   const { t } = useTranslation();
+  const { theme, toggleTheme } = useContext(ThemeContext); // ✅ контекст
 
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedStop, setSelectedStop] = useState('');
@@ -73,8 +76,12 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className={`App ${theme}`}>
       <LanguageSwitcher />
+
+      <button onClick={toggleTheme}>
+        {theme === 'light' ? '🌙 Dark Theme' : '☀️ Light Theme'}
+      </button>
 
       <h1>{t('zone_selection')}</h1>
 
@@ -113,4 +120,11 @@ function App() {
   );
 }
 
-export default App;
+// ✅ Оборачиваем в ThemeProvider
+export default function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  );
+}

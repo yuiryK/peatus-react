@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+body.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Можно стилизовать кнопки и блоки по желанию */
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #61dafb;
+  color: #282c34;
+}
+
